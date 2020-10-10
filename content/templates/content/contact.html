@@ -1,0 +1,30 @@
+{% extends 'content/main.html' %}
+{% block registration %}
+{% load static %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-4 text-center alert" >
+      <img src="{% static 'gif_3vz.gif' %}" height="200" width="200" style="border-radius: 100px; border: 2px solid black" alt="{% url 'main' %}" title="{% url 'main' %}">
+      <h4>Координатор Юнармейского отряда "Вымпел-1"</h4>
+      <h4>Константин Леонидович Пересторонин</h4>
+      <p><a href="tel:+79084418062">+7 (908) 441-80-62</a></p>
+      <a href="mailto:konstantin.prim25@mail.ru?subject=feedback">konstantin.prim25@mail.ru</a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 text-center alert" >
+      <h4>Наш email:</h4>
+      <a href="mailto:help32yuanarmyvympel@gmail.com" target="_blank">help32yuanarmyvympel@gmail.com</a>
+      <h4>Наша школа:</h4>
+      <a href="http://sosh31.ru" target="_blank">МКОУ "СОШ №31"</a>
+      <a href="mailto:Shkola31vostok2@yandex.ru" target="_blank">Shkola31vostok2@yandex.ru</a>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4 text-center alert" >
+      <img src="{% static 'gif_3vz.gif' %}" height="200" width="200" style="border-radius: 100px; border: 2px solid black" alt="{% url 'main' %}" title="{% url 'main' %}">
+      <h4>Координатор Юнармейского отряда "Вымпел-1"</h4>
+      <h4>Алена Тофиковна Капкаева</h4>
+      <p><a href="tel:+79623388902">+7 (962) 338-89-02</a></p>
+      <a href="mailto:alena-tofikovna@yandex.ru?subject=feedback">alena-tofikovna@yandex.ru</a>
+  </div>
+</div>
+</div>
+
+{% endblock %}

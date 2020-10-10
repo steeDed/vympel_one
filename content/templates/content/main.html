@@ -1,0 +1,194 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="Community site for young programmers">
+  <meta name="keywords" content="CYP, cyp, C.Y.P., Community of young programmers, Young programmers, Community of programmers">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+<!-- jQuery 1.8 or later, 33 KB -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<!-- Fotorama from CDNJS, 19 KB -->
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+  <!-- Стили для сайта -->
+  <link rel="stylesheet" href="{% static 'content/main.css' %}">
+</head>
+<body>
+  <!--Шапка сайта-->
+    <nav class="navbar navbar-expand-md sticky-top">
+      <div class="container fluid">
+        <div id="logo">
+          <img src="{% static 'logo.png' %}" class="logo_simple" title="Yuanarmyvostok.com" alt="itProger.com">
+          <span>Вымпел-1</span>
+      </div>
+      <button class="navbar-toggler" style="float: right; color: #f26161;" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+          <span ><svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-house-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M8 3.293l6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+      <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+      </svg></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a href="{% url 'main' %}" class="nav-link btn mt-1">Главная</a></li>
+            <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link btn mt-1">Контакты</a></li>
+            <li class="nav-item"><a href="{% url 'introduction' %}" class="nav-link btn mt-1">Вступить в отряд</a></li>
+            {% if user.is_authenticated %}
+            <li class="nav-item"><a href="{% url 'exit' %}" class="nav-link btn btn-outline-light  ml-2 mt-1">Выйти</a></li>
+            <li class="nav-item"><a  class="nav-link btn btn-outline-light  ml-2 mt-1">{{user.username}}</a></li>
+            {% else %}
+            <li class="nav-item"><a href="{% url 'auth' %}" class="nav-link btn btn-outline-light  ml-2 mt-1">Вход</a></li>
+            <li class="nav-item"><a href="{% url 'reg' %}" class="nav-link btn btn-outline-light mt-1 ml-2">Регистрация</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    {% if messages %}
+      {% for mess in messages %}
+        <div class="alert alert-success">
+          {{ mess }}
+        </div>
+      {% endfor %}
+    {% endif %}
+    {% block news_all %}
+    {% block registration %}
+    {% block main_section_detail %}
+    <!-- Баннер День победы -->
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center mt-2">
+          <img src="{% static '75pobeda.jpg' %}" title="75 лет Победы
+2020 год - особый год для нашей страны. В этом году исполняется 75 лет со дня подписания акта о капитуляции Германии. Путин объявил 2020 год, Годом Памяти и Славы в честь 75-летия Победы в Великой Отечественной войне" style="border-radius: 20px;" >
+        </div>
+      </div>
+    </div>
+    <!--Блок с новостями-->
+    <div class="container-fluid" style="box-shadow: 0 2px 3px 0 rgba(74, 74, 74, .21);">
+      <div class="row padding">
+        <div class="col-12">
+          <h2 >Наши новости</h2>
+          <hr style="border: 2px solid #f26161; width: 300px; text-align: center;">
+          <a href="{% url 'news-all' %}" class="btn-lg" id="all">Показать все</a>
+        </div>
+
+
+        {% block main_section %}
+        {% endblock %}
+      </div>
+    </div>
+    <!--Блок со взводами-->
+    <div class="container-fluid" style="box-shadow: 0 2px 3px 0 rgba(74, 74, 74, .21);">
+    <div class="row  padding">
+      <div class="col-12">
+          <h2>Наши взводы</h2>
+          <hr style="border: 2px solid #f26161; width: 300px; text-align: center;">
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center">
+          <img src="{% static 'gif_it.gif' %}" height="200" width="200" style="border-radius: 100px; border: 2px solid black" alt="{% url 'main' %}" title="{% url 'main' %}">
+          <h3>Медиа взвод</h3>
+          <p>Описание</p>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center" >
+          <img src="{% static 'gif_2vz.gif' %}" height="200" width="200" style="border-radius: 100px; border: 2px solid black" alt="{% url 'main' %}" title="{% url 'main' %}">
+          <h3>Взвод творчества</h3>
+          <p>Описание</p>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 text-center" >
+          <img src="{% static 'gif_3vz.gif' %}" height="200" width="200" style="border-radius: 100px; border: 2px solid black" alt="{% url 'main' %}" title="{% url 'main' %}">
+          <h3>Взвод организации</h3>
+          <p>Описание</p>
+        </div>
+    </div>
+  </div>
+  <!-- Альбом -->
+  <div class="container-fluid" style="box-shadow: 0 2px 3px 0 rgba(74, 74, 74, .21);">
+    <div class="row">
+      <div class="col-12">
+          <h2>Наш альбом</h2>
+          <hr style="border: 2px solid #f26161; width: 300px; text-align: center;">
+        </div>
+
+      <div class="fotorama"
+         data-nav="thumbs"  data-autoplay="true">
+      <img src="{% static 'albom/photo_1.jpg' %}">
+      <img src="{% static 'albom/photo_2.jpg' %}">
+      <img src="{% static 'albom/photo_3.jpg' %}">
+      <img src="{% static 'albom/photo_4.jpg' %}">
+      <img src="{% static 'albom/photo_5.jpg' %}">
+    </div>
+    <div class="col-12 text-center mt-3 mb-3">
+      <a href="{% url 'recent_events' %}" class="btn btn-outline-danger">Посмотреть последнии события</a>
+    </div>
+    </div>
+  </div>
+
+  {% endblock %}
+  {% endblock %}
+  {% endblock %}
+    <!--Футер сайта-->
+    <div class="wrapper">
+        <div class="content"></div>
+        <footer>
+          <nav class="mb-2">
+            <a id="logo_text"  href="#"><svg width="2em" height="2em"  viewBox="0 0 16 16" class="bi bi-star" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.523-3.356c.329-.314.158-.888-.283-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767l-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288l1.847-3.658 1.846 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.564.564 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+</svg>Вымпел-1 Непобедим!</a>
+          </nav>
+          <div class="logo">
+            <a href="#"><img src="{% static 'gif_1.gif' %}" height="200" width="200" style="border-radius: 100px; border: 2px solid #f26161" alt="{% url 'main' %}" title="{% url 'main' %}"></a>
+          </div>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 col-md-4 text-center alert" >
+                <h1 class="display-6" style="border-bottom: 1px solid #f26161;">О нас</h1>
+                <a href="https://yunarmy.ru/headquarters/about/" target="_blank">О движении "Юнармия"</a>
+                <a href="https://yunarmy.ru/headquarters/documents/" target="_blank">Документы "Юнармии"</a>
+                <a href="https://yunarmy.ru/headquarters/documents/" target="_blank">Основной сайт "Юнармии"</a>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-4 text-center alert" >
+                <h1 class="display-6" style="border-bottom: 1px solid #f26161;">Отряд "Вымпел-1"</h1>
+                <a href="{% url 'history_creat' %}" >Наше создание</a>
+                <a href="" >Документы</a>
+                <a href="{% url 'contact' %}">Контакты</a>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-12  mb-2">
+             <p style="color: #f26161; font-weight: 16px;">Детский телефон доверия —</p>
+            <a class="tel" style="text-decoration: underline" href="tel:+79510009494">8 (951) 000-94-94</a>
+            <a href="{% url 'feedback' %}">Обратная связь<svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-headset" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" d="M8 1a5 5 0 0 0-5 5v4.5H2V6a6 6 0 1 1 12 0v4.5h-1V6a5 5 0 0 0-5-5z"/>
+    <path d="M11 8a1 1 0 0 1 1-1h2v4a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V8zM5 8a1 1 0 0 0-1-1H2v4a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V8z"/>
+    <path fill-rule="evenodd" d="M13.5 8.5a.5.5 0 0 1 .5.5v3a2.5 2.5 0 0 1-2.5 2.5H8a.5.5 0 0 1 0-1h3.5A1.5 1.5 0 0 0 13 12V9a.5.5 0 0 1 .5-.5z"/>
+    <path d="M6.5 14a1 1 0 0 1 1-1h1a1 1 0 1 1 0 2h-1a1 1 0 0 1-1-1z"/>
+  </svg></a>
+          </div>
+          <div class="social">
+            <div class="col-12">
+              <p>Мы в социальных сетях</p>
+            </div>
+            <a href="#"><img src="{% static 'vk.png' %}" alt=""></a>
+            <a href="#"><img src="{% static 'insta.png' %}" alt=""></a>
+            <a href="#"><img src="{% static 'mail.png' %}" alt=""></a>
+            <a href="#"><img src="{% static 'telega.png' %}" alt=""></a>
+            <a href="#"><img src="{% static 'fk.png' %}" alt=""></a>
+          </div>
+        </footer>
+      </div>
+      <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f560fba72e32443"></script>
+
+</body>
+</html>

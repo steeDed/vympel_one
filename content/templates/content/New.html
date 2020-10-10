@@ -1,0 +1,26 @@
+{% extends 'content/main.html' %}
+{% block main_section %}
+{% for post in news %}
+
+<div class="col-md-4 mb-2">
+  <div class="card" style="border-radius: 10px;">
+    {% if post.image %}
+    <div class="fotorama"
+       data-allowfullscreen="native">
+    <img src="{{post.image.url}}" id="img_post" style="border-radius: 20px; border-bottom: 2px solid black; ">
+    </div>
+    {% else %}
+        <p></p>
+    {% endif %}
+    <div class="card-body">
+      <h3 class="card-title">{{ post.title }}</h3>
+      <p class="card-text">
+        {{ post.text|safe|truncatechars:250 }}
+      </p>
+      <a href="{% url 'news-detail' post.id %}" class="btn btn  btn-outline-danger">Читать далее</a>
+
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

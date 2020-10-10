@@ -1,0 +1,20 @@
+{% extends 'content/main.html' %}
+{% load crispy_forms_tags %}
+{% block registration %}
+  <div class="container">
+    <div class="row">
+      <div class="col-12 p-5">
+        <div class="form-section">
+          <h2>Восстановление пароля</h2>
+          <form  method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" name="button" class="btn btn-danger">Восстановить</button>
+          </form>
+        </div>
+        <hr>
+        Еще не заригестрированы? <a href="{%  url 'reg' %}" class="btn btn-info">Зарегистрироваться</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

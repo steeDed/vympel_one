@@ -1,0 +1,29 @@
+{% extends 'content/main.html' %}
+{% load crispy_forms_tags %}
+{% block main_section_detail %}
+
+<div class="col-12">
+  <h2 style="text-align: center">Наши новости</h2>
+  <hr style="border: 2px solid #f26161;  text-align: center;">
+</div>
+<div class="col-md-12 mb-5">
+  <div class="card" style="border-radius: 10px;">
+    {% if object.image %}
+    <div class="fotorama"
+       data-allowfullscreen="native">
+    <img src="{{object.image.url}}" id="img_post" style="border-radius: 20px; border-bottom: 2px solid black; ">
+    </div>
+    {% else %}
+        <p></p>
+    {% endif %}
+    <div class="card-body">
+      <h3 class="card-title">{{ object.title }}</h3>
+      <p class="card-text">
+        {{ object.text|safe }}
+      </p>
+      <a href="{% url 'main'%}" class="btn btn  btn-outline-secondary">Назад</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
