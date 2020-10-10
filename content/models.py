@@ -9,7 +9,7 @@ class New(models.Model):
     text = models.TextField('Текст статьи')
     date = models.DateTimeField('Дата', default=timezone.now)
     avtor = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ImageField(null=True, blank=True, upload_to='media')
+    image = models.FileField(null=True, upload_to='media')
 
 
     def __str__(self):
