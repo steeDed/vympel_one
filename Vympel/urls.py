@@ -33,5 +33,5 @@ urlpatterns = [
     path('exit/', authViews.LogoutView.as_view(template_name='users/exit.html' ), name="exit"), # Страница выхода из учетной записи
     path('admin/', admin.site.urls), # Администратирование
 ]
-
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
